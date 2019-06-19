@@ -1,3 +1,9 @@
+## Review
+
+React infinite scroll gallery.
+Just for practising and experimenting...
+There will be new updates for new features.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
