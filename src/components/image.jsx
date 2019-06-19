@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 export default function Image({image}){
-    return <img className="single-photo" src={image.urls.thumb} alt="an image" />;
+    return <img className="single-photo" src={image.urls.thumb} alt={image.user.first_name} />;
 }

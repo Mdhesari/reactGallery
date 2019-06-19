@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from './components/image';
+import Images from './components/images';
 import './App.css';
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
               Infinite Scroll Unsplash Code Challenge
             </h1>
           </div>
-          <Image />
+          <Images />
         </div>
       </div>
     </div>

@@ -1,28 +1,45 @@
 import React, { Component } from "react";
-import Axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Image from "./image";
+import { toJson } from "unsplash-js";
 
 class Images extends Component {
+  setupUnsplash() {
+    const Unsplash = require("unsplash-js").default;
+
+    return new Unsplash({
+      applicationId:
+        "ff743195ea365b0a790a6bfbedffcba6ea4fb7173bfc89ff8517041e5a196109",
+      secret: "24ec669236e980af76a7865c148fbd7edd91668c278992e4713e13f41c299d0d"
+    });
+  }
   state = {
+    unsplash: this.setupUnsplash(),
     images: [],
-    count: 30,
+    count: 10,
     start: 1
   };
 
   componentDidMount = () => {
-    const { count, start } = this.state;
-    Axios.get(`/api/photos?count=${count}$start=${start}`).then(res =>
-      this.setState({ images: res.data })
-    );
+    const { unsplash, count, start } = this.state;
+    unsplash.photos
+      .listPhotos(start, count, "latest")
+      .then(toJson)
+      .then(images => {
+        this.setState({ images });
+      });
   };
 
   fetchImages = () => {
-    const { count, start } = this.state;
-    this.setState({ start: this.state.start + count });
-    Axios.get(`/api/photos?count=${count}$start=${start}`).then(res =>
-      this.setState({ images: this.state.images.concat(res.data) })
-    );
+    let { unsplash, count, start } = this.state;
+    start += 1;
+    this.setState({start});
+    unsplash.photos
+      .listPhotos(start, count, "latest")
+      .then(toJson)
+      .then(images => {
+        this.setState({ images: this.state.images.concat(images) });
+      });
   };
   render() {
     return (
@@ -42,5 +59,4 @@ class Images extends Component {
   }
 }
 
-image: [];
 export default Images;
