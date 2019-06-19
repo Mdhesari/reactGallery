@@ -1,25 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
+import Image from './components/image';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <React.Fragment>
+    <div className="hero is-fullheight is-bold is-info">
+      <div className="hero-body">
+        <div className="container">
+          <div className="header content">
+            <h2 className="subtitle is-6">Code Challenge #16</h2>
+            <h1 className="title is-1">
+              Infinite Scroll Unsplash Code Challenge
+            </h1>
+          </div>
+          <Image />
+        </div>
+      </div>
     </div>
+  </React.Fragment>
   );
 }
 
